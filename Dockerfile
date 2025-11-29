@@ -1,9 +1,10 @@
 FROM ubuntu:22.04
 
-# Install dependencies
-RUN apt update && \
-    apt install -y curl wget git openssh-client tmate && \
+RUN apt update && apt install -y \
+    curl wget sudo git openssh-client && \
     apt clean
 
-# Keep container alive and start tmate session automatically
-CMD tmate -F
+# Install sshx.io client
+RUN curl -fsSL https://sshx.io/get | sh
+
+CMD ["sshx"]
